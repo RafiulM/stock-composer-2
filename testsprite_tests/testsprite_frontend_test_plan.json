@@ -1,0 +1,1036 @@
+[
+  {
+    "id": "TC001",
+    "title": "Login with valid credentials redirects to dashboard",
+    "description": "Verifies a user can sign in with email/password and land on the dashboard with KPIs visible.",
+    "category": "User authentication",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user lands on the dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify dashboard KPIs are displayed"
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Login with invalid credentials shows error and stays on login",
+    "description": "Verifies invalid sign-in shows an error toast and does not navigate away from the login page.",
+    "category": "User authentication",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill invalid-user@example.com into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill wrong-password into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an error toast is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user remains on the login page"
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Register new account redirects to dashboard",
+    "description": "Verifies a new user can register and is redirected to the dashboard with KPIs visible.",
+    "category": "User authentication",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /register"
+      },
+      {
+        "type": "action",
+        "description": "Fill a unique email into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill a valid password into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the registration form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user lands on the dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify dashboard KPIs are displayed"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Register with existing email shows error and stays on register",
+    "description": "Verifies registration with an already-used email shows an error toast and does not navigate away from the registration page.",
+    "category": "User authentication",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /register"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill a valid password into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the registration form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an error toast is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user remains on the registration page"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Login form prevents submission with missing required fields",
+    "description": "Verifies the login form shows validation errors when required fields are missing.",
+    "category": "User authentication",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a required-field validation error is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user remains on the login page"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Register form prevents submission with missing required fields",
+    "description": "Verifies the registration form shows validation errors when required fields are missing.",
+    "category": "User authentication",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /register"
+      },
+      {
+        "type": "action",
+        "description": "Fill a unique email into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the registration form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a required-field validation error is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user remains on the registration page"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Navigate between login and register pages",
+    "description": "Verifies the user can navigate from login to register using in-page navigation and the register form is displayed.",
+    "category": "User authentication",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to create an account"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user lands on the registration page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the registration form is displayed"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Dashboard loads for authenticated user and shows KPIs and panels",
+    "description": "Verifies an authenticated user can open the dashboard and see primary KPI content and supporting panels.",
+    "category": "Dashboard",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation item to view the dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify dashboard KPIs are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the low-stock panel is displayed"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Unauthenticated dashboard access redirects to login",
+    "description": "Verifies navigating to the dashboard while unauthenticated sends the user to the login page.",
+    "category": "Dashboard",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user lands on the login page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the login form is displayed"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Dashboard shows charts or empty states based on available data",
+    "description": "Verifies the dashboard renders either chart content or an empty state message when no inventory data exists.",
+    "category": "Dashboard",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation item to view the dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify stock trend and composition visualization content is displayed or an empty-state message is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Products page loads and shows products table for authenticated user",
+    "description": "Verifies an authenticated user can open Product management and see the primary products listing UI.",
+    "category": "Product management",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation item to view products"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the products table is displayed"
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Create a new product and see it listed",
+    "description": "Verifies creating a product end-to-end results in the new record appearing in the products table.",
+    "category": "Product management",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation item to view products"
+      },
+      {
+        "type": "action",
+        "description": "Open the create product form"
+      },
+      {
+        "type": "action",
+        "description": "Fill Product Alpha into the name field"
+      },
+      {
+        "type": "action",
+        "description": "Fill SKU-ALPHA-001 into the SKU field"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid unit"
+      },
+      {
+        "type": "action",
+        "description": "Fill RACK-A1 into the rack field"
+      },
+      {
+        "type": "action",
+        "description": "Fill 10 into the minimum stock field"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid category"
+      },
+      {
+        "type": "action",
+        "description": "Submit the product form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the products table contains SKU-ALPHA-001"
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Edit an existing product and see updated details",
+    "description": "Verifies a product can be edited and the updated values appear in the products table.",
+    "category": "Product management",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation item to view products"
+      },
+      {
+        "type": "action",
+        "description": "Open the create product form"
+      },
+      {
+        "type": "action",
+        "description": "Fill Product Beta into the name field"
+      },
+      {
+        "type": "action",
+        "description": "Fill SKU-BETA-001 into the SKU field"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid unit"
+      },
+      {
+        "type": "action",
+        "description": "Fill RACK-B1 into the rack field"
+      },
+      {
+        "type": "action",
+        "description": "Fill 5 into the minimum stock field"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid category"
+      },
+      {
+        "type": "action",
+        "description": "Submit the product form"
+      },
+      {
+        "type": "action",
+        "description": "Open the edit form for SKU-BETA-001"
+      },
+      {
+        "type": "action",
+        "description": "Fill RACK-B2 into the rack field"
+      },
+      {
+        "type": "action",
+        "description": "Fill 7 into the minimum stock field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the product form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the products table shows RACK-B2 for SKU-BETA-001"
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "Prevent creating product with duplicate SKU",
+    "description": "Verifies SKU uniqueness enforcement by attempting to create two products with the same SKU and expecting a validation error.",
+    "category": "Product management",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation item to view products"
+      },
+      {
+        "type": "action",
+        "description": "Open the create product form"
+      },
+      {
+        "type": "action",
+        "description": "Fill Product Gamma into the name field"
+      },
+      {
+        "type": "action",
+        "description": "Fill SKU-DUP-001 into the SKU field"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid unit"
+      },
+      {
+        "type": "action",
+        "description": "Fill RACK-C1 into the rack field"
+      },
+      {
+        "type": "action",
+        "description": "Fill 3 into the minimum stock field"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid category"
+      },
+      {
+        "type": "action",
+        "description": "Submit the product form"
+      },
+      {
+        "type": "action",
+        "description": "Open the create product form"
+      },
+      {
+        "type": "action",
+        "description": "Fill Product Gamma Two into the name field"
+      },
+      {
+        "type": "action",
+        "description": "Fill SKU-DUP-001 into the SKU field"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid unit"
+      },
+      {
+        "type": "action",
+        "description": "Fill RACK-C2 into the rack field"
+      },
+      {
+        "type": "action",
+        "description": "Fill 4 into the minimum stock field"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid category"
+      },
+      {
+        "type": "action",
+        "description": "Submit the product form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a SKU validation error is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user remains on the products page"
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Delete a product and verify it is removed from the table",
+    "description": "Verifies a product can be deleted via the UI and no longer appears in the products table.",
+    "category": "Product management",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation item to view products"
+      },
+      {
+        "type": "action",
+        "description": "Open the create product form"
+      },
+      {
+        "type": "action",
+        "description": "Fill Product Delta into the name field"
+      },
+      {
+        "type": "action",
+        "description": "Fill SKU-DEL-001 into the SKU field"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid unit"
+      },
+      {
+        "type": "action",
+        "description": "Fill RACK-D1 into the rack field"
+      },
+      {
+        "type": "action",
+        "description": "Fill 2 into the minimum stock field"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid category"
+      },
+      {
+        "type": "action",
+        "description": "Submit the product form"
+      },
+      {
+        "type": "action",
+        "description": "Initiate delete for SKU-DEL-001"
+      },
+      {
+        "type": "action",
+        "description": "Confirm the deletion"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the products table does not contain SKU-DEL-001"
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "Product form validation prevents save with missing required fields",
+    "description": "Verifies the product form shows validation errors and does not create a product when required fields are omitted.",
+    "category": "Product management",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation item to view products"
+      },
+      {
+        "type": "action",
+        "description": "Open the create product form"
+      },
+      {
+        "type": "action",
+        "description": "Submit the product form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify required-field validation errors are visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user remains on the products page"
+      }
+    ]
+  },
+  {
+    "id": "TC017",
+    "title": "Record inbound stock with batch and date",
+    "description": "Verifies an authenticated user can submit a valid inbound record and see a success confirmation and updated totals.",
+    "category": "Stock inbound",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to inbound stock"
+      },
+      {
+        "type": "action",
+        "description": "Select a product"
+      },
+      {
+        "type": "action",
+        "description": "Fill a valid positive quantity into the quantity field"
+      },
+      {
+        "type": "action",
+        "description": "Fill INB-TC001 into the batch number field"
+      },
+      {
+        "type": "action",
+        "description": "Fill a valid inbound date into the inbound date field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the inbound form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success confirmation is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the product totals reflect the newly added inbound quantity"
+      }
+    ]
+  },
+  {
+    "id": "TC018",
+    "title": "Inbound validation prevents negative quantity and missing required fields",
+    "description": "Verifies the inbound form blocks invalid input and shows validation without recording a movement.",
+    "category": "Stock inbound",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to inbound stock"
+      },
+      {
+        "type": "action",
+        "description": "Select a product"
+      },
+      {
+        "type": "action",
+        "description": "Fill a negative quantity into the quantity field"
+      },
+      {
+        "type": "action",
+        "description": "Leave the batch number field empty"
+      },
+      {
+        "type": "action",
+        "description": "Submit the inbound form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a validation error is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no success confirmation is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC019",
+    "title": "Inbound to an existing batch increases batch quantity and appends movement",
+    "description": "Verifies submitting inbound twice with the same batch number increases the batch quantity and adds a new movement entry.",
+    "category": "Stock inbound",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to inbound stock"
+      },
+      {
+        "type": "action",
+        "description": "Select a product"
+      },
+      {
+        "type": "action",
+        "description": "Fill 5 into the quantity field"
+      },
+      {
+        "type": "action",
+        "description": "Fill INB-TC003 into the batch number field"
+      },
+      {
+        "type": "action",
+        "description": "Fill a valid inbound date into the inbound date field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the inbound form"
+      },
+      {
+        "type": "action",
+        "description": "Wait for the inbound submission to complete"
+      },
+      {
+        "type": "action",
+        "description": "Fill 7 into the quantity field"
+      },
+      {
+        "type": "action",
+        "description": "Fill INB-TC003 into the batch number field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the inbound form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to movement history"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify at least two movement rows exist for batch INB-TC003"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the movement quantities include 5 and 7 for batch INB-TC003"
+      }
+    ]
+  },
+  {
+    "id": "TC020",
+    "title": "Inbound page loads primary form content",
+    "description": "Verifies the inbound page loads and presents the core inputs required to record inbound stock.",
+    "category": "Stock inbound",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to inbound stock"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the inbound form is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the product selector, quantity field, batch number field, and inbound date field are available"
+      }
+    ]
+  },
+  {
+    "id": "TC021",
+    "title": "Inbound requires product selection before submission",
+    "description": "Verifies the user cannot submit inbound without selecting a product and sees validation feedback.",
+    "category": "Stock inbound",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to inbound stock"
+      },
+      {
+        "type": "action",
+        "description": "Fill 3 into the quantity field"
+      },
+      {
+        "type": "action",
+        "description": "Fill INB-TC005 into the batch number field"
+      },
+      {
+        "type": "action",
+        "description": "Fill a valid inbound date into the inbound date field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the inbound form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a validation error is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no success confirmation is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC022",
+    "title": "Inbound requires inbound date before submission",
+    "description": "Verifies the user cannot submit inbound without an inbound date and sees validation feedback.",
+    "category": "Stock inbound",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to inbound stock"
+      },
+      {
+        "type": "action",
+        "description": "Select a product"
+      },
+      {
+        "type": "action",
+        "description": "Fill 4 into the quantity field"
+      },
+      {
+        "type": "action",
+        "description": "Fill INB-TC006 into the batch number field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the inbound form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a validation error is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no success confirmation is visible"
+      }
+    ]
+  }
+]

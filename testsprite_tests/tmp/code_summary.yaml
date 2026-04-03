@@ -1,0 +1,132 @@
+version: "2"
+type: frontend
+tech_stack:
+  - TypeScript
+  - Next.js 16
+  - React 19
+  - Tailwind CSS 4
+  - Base UI / shadcn-style components
+  - better-auth
+  - Drizzle ORM + PostgreSQL
+routes:
+  - path: /
+    file: src/app/page.tsx
+    auth_required: true
+    description: Redirects to /dashboard
+  - path: /login
+    file: src/app/(auth)/login/page.tsx
+    auth_required: false
+    description: Email and password sign-in
+  - path: /register
+    file: src/app/(auth)/register/page.tsx
+    auth_required: false
+    description: User registration
+  - path: /dashboard
+    file: src/app/(app)/dashboard/page.tsx
+    auth_required: true
+    description: Dashboard with stock summary and charts
+  - path: /products
+    file: src/app/(app)/products/page.tsx
+    auth_required: true
+    description: Product master data CRUD
+  - path: /inbound
+    file: src/app/(app)/inbound/page.tsx
+    auth_required: true
+    description: Stock inbound recording
+  - path: /outbound
+    file: src/app/(app)/outbound/page.tsx
+    auth_required: true
+    description: Stock outbound recording
+  - path: /movements
+    file: src/app/(app)/movements/page.tsx
+    auth_required: true
+    description: Movement history log
+features:
+  - name: User authentication
+    description: Register, login, and session via better-auth
+    files:
+      - src/app/(auth)/login/page.tsx
+      - src/app/(auth)/register/page.tsx
+      - src/lib/auth-client.ts
+      - src/components/auth-guard.tsx
+    entry_route: /login
+    user_interactions:
+      - Fill email and password on login
+      - Submit login form
+      - Navigate to register and create account
+      - See toast on success or error
+    api_calls:
+      - method: POST
+        endpoint: /api/auth/*
+    auth_required: false
+  - name: Dashboard
+    description: Overview, low stock alerts, stock trend and composition charts
+    files:
+      - src/app/(app)/dashboard/page.tsx
+    entry_route: /dashboard
+    user_interactions:
+      - View KPIs and low stock panel
+      - View charts after data exists
+    api_calls:
+      - method: GET
+        endpoint: /api/inventory
+    auth_required: true
+  - name: Product management
+    description: Add, edit, delete products with SKU, unit, rack, minimum stock
+    files:
+      - src/app/(app)/products/page.tsx
+      - src/app/api/products/route.ts
+      - src/app/api/products/[id]/route.ts
+    entry_route: /products
+    user_interactions:
+      - Open products page from sidebar
+      - Create or edit product via form
+      - Delete product
+    api_calls:
+      - method: GET
+        endpoint: /api/products
+      - method: POST
+        endpoint: /api/products
+      - method: PATCH
+        endpoint: /api/products/[id]
+      - method: DELETE
+        endpoint: /api/products/[id]
+    auth_required: true
+  - name: Stock inbound
+    description: Record inbound stock with batch and date
+    files:
+      - src/app/(app)/inbound/page.tsx
+      - src/app/api/inbound/route.ts
+    entry_route: /inbound
+    user_interactions:
+      - Select product, quantity, batch number, date
+      - Submit inbound form
+    api_calls:
+      - method: POST
+        endpoint: /api/inbound
+    auth_required: true
+  - name: Stock outbound
+    description: Record outbound stock with batch selection
+    files:
+      - src/app/(app)/outbound/page.tsx
+      - src/app/api/outbound/route.ts
+    entry_route: /outbound
+    user_interactions:
+      - Select product, quantity, batch, note
+      - Submit outbound form
+    api_calls:
+      - method: POST
+        endpoint: /api/outbound
+    auth_required: true
+  - name: Movement history
+    description: Table of stock movements
+    files:
+      - src/app/(app)/movements/page.tsx
+    entry_route: /movements
+    user_interactions:
+      - View movement log table
+    api_calls:
+      - method: GET
+        endpoint: /api/inventory
+    auth_required: true
+known_limitations: []

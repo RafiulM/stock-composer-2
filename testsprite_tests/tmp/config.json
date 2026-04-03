@@ -1,0 +1,31 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:3000",
+  "loginUser": "raf@raf.com",
+  "loginPassword": "admin123",
+  "executionArgs": {
+    "projectName": "stock-composer-2",
+    "projectPath": "/Users/rafiulm/stock-composer-2",
+    "testIds": [
+      "TC001",
+      "TC002",
+      "TC003",
+      "TC004",
+      "TC005",
+      "TC006",
+      "TC007",
+      "TC008",
+      "TC009",
+      "TC010"
+    ],
+    "additionalInstruction": "Run at most 10 test cases: TC001 through TC010 only. Do not execute any other test IDs.",
+    "serverMode": "development",
+    "envs": {
+      "API_KEY": "sk-user-BVlSiBsNKePRHR8j3Q5YCKZ8imsv2M5mFLZ63OvnuyLTptLajSO-zP1MMWYv5gH86CGQt63xTup9JlpRIYWrJ8FvTpEFmGo63EE9obThICHs5stPnMrb2pn6m_Us9BGJItA"
+    }
+  },
+  "serverPort": 65382,
+  "proxy": "http://1c1541ea-be40-4140-9214-0244fd94501f:rNSR7FiUQN90u2OuoJMWXcvfySeghXHH@tun.testsprite.com:8080"
+}
