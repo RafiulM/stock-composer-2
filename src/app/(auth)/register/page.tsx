@@ -58,7 +58,7 @@ export default function RegisterPage() {
     router.push("/dashboard");
   });
 
-  if (isPending || session) {
+  if (!isPending && session) {
     return (
       <div className="text-muted-foreground text-sm">Mengalihkan…</div>
     );

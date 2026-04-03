@@ -1,4 +1,3 @@
-import asyncio
 from playwright import async_api
 from playwright.async_api import expect
 
@@ -35,18 +34,19 @@ async def run_test():
         
         # -> Click the 'Daftar' link in-page to navigate to the registration page and check that the registration form appears.
         frame = context.pages[-1]
-        # Click element
-        elem = frame.locator('xpath=/html/body/div[2]/div/div/div[2]/a').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-        # -> Navigate to the registration page (use /register) because no clickable in-page registration link is available, then verify the registration form is displayed.
+        await frame.get_by_role("link", name="Daftar").click(timeout=10000)
+        await expect(frame.get_by_text("Daftar admin", exact=True)).to_be_visible(
+            timeout=10000
+        )
+
+        # -> Direct /register should show the same registration form (locale is Indonesian).
         await page.goto("http://localhost:3000/register", wait_until="commit", timeout=10000)
-        
-        # --> Assertions to verify final state
         frame = context.pages[-1]
-        assert '/register' in frame.url
-        await expect(frame.locator('text=Register').first).to_be_visible(timeout=3000)
-        await asyncio.sleep(5)
+        assert "/register" in frame.url
+        await expect(frame.get_by_text("Daftar admin", exact=True)).to_be_visible(
+            timeout=10000
+        )
+        await expect(frame.get_by_label("Nama")).to_be_visible(timeout=5000)
 
     finally:
         if context:
